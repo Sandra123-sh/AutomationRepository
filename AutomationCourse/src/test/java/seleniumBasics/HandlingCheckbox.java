@@ -24,6 +24,7 @@ public class HandlingCheckbox extends Base {
 	WebElement checkbox1=driver.findElement(By.xpath("//input[@value='option-1']"));
 		checkbox1.click();
 		System.out.println(checkbox1.isSelected());
+
 	}
 	public void handlingRadiobutton()
 	{

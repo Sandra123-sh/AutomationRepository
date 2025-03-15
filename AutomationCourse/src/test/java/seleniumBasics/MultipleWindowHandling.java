@@ -12,7 +12,7 @@ public class MultipleWindowHandling extends Base {
 		MultipleWindowHandling multiplewindowhandling=new MultipleWindowHandling();
 		multiplewindowhandling.initializeBrowser();
 		multiplewindowhandling.multiplewindowhandling();
-		multiplewindowhandling.driverCloseAndQuit();
+		//multiplewindowhandling.driverCloseAndQuit();
 	}
 
 
