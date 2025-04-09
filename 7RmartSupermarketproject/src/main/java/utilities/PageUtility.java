@@ -10,31 +10,29 @@ public class PageUtility {
 		Select object = new Select(element);
 		object.selectByValue(value);
 	}
-	public void selectIndexWithValue(WebElement element, int value){
-		Select object=new Select(element);
+
+	public void selectIndexWithValue(WebElement element, int value) {
+		Select object = new Select(element);
 		object.selectByIndex(value);
 	}
-	public void handlingCheckbox(WebElement element,String value)
-	{
+
+	public void handlingCheckbox(WebElement element, String value) {
 		element.click();
 	}
+
 	public void verifyMouseHover(WebElement element) {
-		
-		Actions actions=new Actions(null);
+
+		Actions actions = new Actions(null);
 		actions.moveToElement(element).build().perform();
 	}
+
 	public void handlingRadiobutton(WebElement element) {
 		element.click();
 	}
+
 	public void verifyRightClick(WebElement element) {
-		
-		Actions actions=new Actions(null);
+
+		Actions actions = new Actions(null);
 		actions.contextClick().build().perform();
-		}
 	}
-	
-	
-	
-	
-
-
+}

@@ -20,71 +20,52 @@ import utilities.WaitUtility;
 public class Base {
 	Properties prop;
 	FileInputStream fs;
-	
-		public WebDriver driver;
-		
-		@BeforeMethod(alwaysRun=true)
-		@Parameters("browser")
-		public void initializeBrowser(String browser) throws Exception
-		{
-			prop=new Properties();
-			fs=new FileInputStream(Constants.CONFIGFILE);
-			prop.load(fs);
-			if(browser.equalsIgnoreCase("chrome"))
-			{
-				driver= new ChromeDriver();
-			}
-			else if (browser.equalsIgnoreCase("Edge"))
-			{
-				driver = new EdgeDriver();
-			}
-			else if(browser.equalsIgnoreCase("Firefox"))
-			{
-				driver=new FirefoxDriver();
-			}
-			else
-			{
-				throw new Exception("Invalid browser");
-			}
-			
-				
-		
-			//driver = new FirefoxDriver();
-			//driver = new EdgeDriver();
-			//driver= new ChromeDriver();
-			driver.get(prop.getProperty("url"));
-			driver.manage().window().maximize();
-		   WaitUtility wait= new WaitUtility();
-		   wait.implicitWAIT(driver);
-			
+
+	public WebDriver driver;
+
+	@BeforeMethod(alwaysRun = true)
+	@Parameters("browser")
+	public void initializeBrowser(String browser) throws Exception {
+		prop = new Properties();
+		fs = new FileInputStream(Constants.CONFIGFILE);
+		prop.load(fs);
+		if (browser.equalsIgnoreCase("chrome")) {
+			driver = new ChromeDriver();
+		} else if (browser.equalsIgnoreCase("Edge")) {
+			driver = new EdgeDriver();
+		} else if (browser.equalsIgnoreCase("Firefox")) {
+			driver = new FirefoxDriver();
+		} else {
+			throw new Exception("Invalid browser");
 		}
-					
-			
-		@AfterMethod(alwaysRun=true)
-		public void driverQuit(ITestResult iTestResult) throws IOException
+
+		// driver = new FirefoxDriver();
+		// driver = new EdgeDriver();
+		// driver= new ChromeDriver();
+		driver.get(prop.getProperty("url"));
+		driver.manage().window().maximize();
+		WaitUtility wait = new WaitUtility();
+		wait.implicitWAIT(driver);
+
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void driverQuit(ITestResult iTestResult) throws IOException
+
+	{
+
+		if (iTestResult.getStatus() == ITestResult.FAILURE)
 
 		{
 
-		if(iTestResult.getStatus()==ITestResult.FAILURE)
-
-		{
-
-			ScreenshotUtility screenShot=new ScreenshotUtility();
+			ScreenshotUtility screenShot = new ScreenshotUtility();
 
 			screenShot.getScreenshot(driver, iTestResult.getName());
 
 		}
 
-			//driver.quit();
-
-			
-
-		}
-
+		// driver.quit();
 
 	}
 
-
-
-
-
+}

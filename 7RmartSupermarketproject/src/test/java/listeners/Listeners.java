@@ -12,19 +12,14 @@ import com.aventstack.extentreports.Status;
 import automationCore.Base;
 import utilities.ExtentReportUtility;
 
-
 public class Listeners extends Base implements ITestListener {
 	ExtentTest test;
 
-	ExtentReports extent=ExtentReportUtility.createExtentReports();
+	ExtentReports extent = ExtentReportUtility.createExtentReports();
 
 	ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 
-
-
-	public void onTestStart(ITestResult result) {  
-
-
+	public void onTestStart(ITestResult result) {
 
 		ITestListener.super.onTestStart(result);
 
@@ -32,29 +27,17 @@ public class Listeners extends Base implements ITestListener {
 
 		extentTest.set(test);
 
-
-
 	}
 
-
-
-	public void onTestSuccess(ITestResult result) { 
-
-
+	public void onTestSuccess(ITestResult result) {
 
 		ITestListener.super.onTestSuccess(result);
 
 		extentTest.get().log(Status.PASS, "Test Passed");
 
-
-
 	}
 
-
-
-	public void onTestFailure(ITestResult result) { 
-
-
+	public void onTestFailure(ITestResult result) {
 
 		ITestListener.super.onTestFailure(result);
 
@@ -74,31 +57,21 @@ public class Listeners extends Base implements ITestListener {
 
 		} catch (IllegalArgumentException e) {
 
-
-
 			e.printStackTrace();
 
 		} catch (IllegalAccessException e) {
-
-
 
 			e.printStackTrace();
 
 		} catch (NoSuchFieldException e) {
 
-
-
 			e.printStackTrace();
 
 		} catch (SecurityException e) {
 
-
-
 			e.printStackTrace();
 
 		}
-
-
 
 		try {
 
@@ -112,11 +85,7 @@ public class Listeners extends Base implements ITestListener {
 
 	}
 
-
-
-
-
-	public void onTestSkipped(ITestResult result) { 
+	public void onTestSkipped(ITestResult result) {
 
 		ITestListener.super.onTestSkipped(result);
 
@@ -124,11 +93,7 @@ public class Listeners extends Base implements ITestListener {
 
 		String testMethodName = result.getMethod().getMethodName();
 
-
-
 	}
-
-
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 
@@ -136,49 +101,24 @@ public class Listeners extends Base implements ITestListener {
 
 	}
 
-
-
 	public void onTestFailedWithTimeout(ITestResult result) {
-
-
 
 		ITestListener.super.onTestFailedWithTimeout(result);
 
 	}
 
-
-
-	public void onStart(ITestContext context) { 
-
-
+	public void onStart(ITestContext context) {
 
 		ITestListener.super.onStart(context);
 
 	}
 
-
-
 	public void onFinish(ITestContext context) {
-
-
 
 		ITestListener.super.onFinish(context);
 
 		extent.flush();
 
-
-
-
-
-
-
-
-
 	}
-
-
-
-
-
 
 }
